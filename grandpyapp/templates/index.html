@@ -10,16 +10,22 @@
 			display:flex;
 		}
 		
-		#gpframe
+		header, #gpframe, footer
 		{
-			justify-content:space-between;
-		}	
+			justify-content:space-around;
+		}
+		#answer
+		{
+			
+			background-image:url({{url_for('static', filename='images/bubble.png')}});
+			background-size:cover;
+		}
 	</style>
 </head>
 <body>
 	<header>
 		<div id=logo>
-			<img src="{{url_for('static', filename='images/logo.png')}}" width="30%"/>
+			<img src="{{url_for('static', filename='images/logo.png')}}" width="40%"/>
 		</div>
 		<div id =cphrase>Laisse GrandpyBot te guider!</div>
 		<hr/>
@@ -30,7 +36,8 @@
 				<input id="send" type="submit" value="Grandpy, tu sais ?"/>
 		</form>
 		<div id=gpframe>
-			<img id="bubble" src="{{url_for('static', filename='images/bubble.png')}}" width="20%"/>
+			<img id="bubble" src="{{url_for('static', filename='images/bubble.png')}}" width="30%" height="60%" hidden/>
+			<p id="answer">Dis-moi où tu veux aller.</p>
 			<img id="grandpy" src="{{url_for('static', filename='images/gp_normal.png')}}" width="20%"/>
 		</div>
 		<hr/>
@@ -39,9 +46,10 @@
 	</div>
 	<footer>
 		<p>My Name</p>
-		<p>My github link</p>
+		<a href="https://github.com/FatSin/oc-grandpy">My github link<a/>
 	</footer>
 	
+	<script src="{{url_for('static',filename='script.js')}}"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
