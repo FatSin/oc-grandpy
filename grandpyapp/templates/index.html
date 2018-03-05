@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	
 	<title>GrandPy Bot</title>
 	<style>
 		header, #gpframe, footer
@@ -10,16 +11,40 @@
 			display:flex;
 		}
 		
-		header, #gpframe, footer
+		/*header, #gpframe, footer
 		{
 			justify-content:space-around;
+		}*/
+		
+		#header
+		{
+			margin-bottom:10px;
 		}
+		
+		#gpframe
+		{
+			margin-top:10px;
+		}
+		
 		#answer
 		{
-			
+			width=90px;
+			height=90px;
+			text-align:center;
 			background-image:url({{url_for('static', filename='images/bubble.png')}});
-			background-size:cover;
+			background-size:contain;
+			background-repeat:no-repeat;
+			padding-right:650px;
+			
 		}
+		
+		/*#grandpy
+		{
+			margin-right:20px
+			
+		}*/
+		
+		
 	</style>
 </head>
 <body>
@@ -36,22 +61,32 @@
 				<input id="send" type="submit" value="Grandpy, tu sais ?"/>
 		</form>
 		<div id=gpframe>
-			<img id="bubble" src="{{url_for('static', filename='images/bubble.png')}}" width="30%" height="60%" hidden/>
-			<p id="answer">Dis-moi où tu veux aller.</p>
+			<!--<img id="bubble" src="{{url_for('static', filename='images/bubble.png')}}" width="30%" height="60%" hidden/>!-->
+			<p id="answer">Dis-moi où tu veux aller</p>
 			<img id="grandpy" src="{{url_for('static', filename='images/gp_normal.png')}}" width="20%"/>
 		</div>
 		<hr/>
-		<div id=gmaps>Google Maps frame</div>
+		<iframe
+		  hidden="hidden"
+		  id="gmaps"
+		  width="450"
+		  height="250"
+		  frameborder="0" style="border:0"
+		  allowfullscreen>
+		</iframe>
 		<hr/>
 	</div>
 	<footer>
 		<p>My Name</p>
-		<a href="https://github.com/FatSin/oc-grandpy">My github link<a/>
+		<!--<a href="https://github.com/FatSin/oc-grandpy">My github link<a/>!-->
 	</footer>
 	
-	<script src="{{url_for('static',filename='script.js')}}"></script>
+		
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="{{url_for('static',filename='script.js')}}"></script>
+	
+	
 
 </body>
 </html>

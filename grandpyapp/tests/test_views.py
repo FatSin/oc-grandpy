@@ -1,13 +1,22 @@
 import os
 import urllib.request
+import requests
 
-from .. import templates
+import sys
+sys.path.append(sys.path[0] + "/..")
 
-#from grandpyapp import views
+import views
+
+#from .. import templates
+
+#from .. import views
 
 HOST="localhost:"
 PORT="5000" 
 INDEX_FILE="index.html"
+
+
+
 
 #Test the rendering of index.html
 def test_httpcode():
@@ -25,12 +34,37 @@ def test_httpcode():
 
 
 #Check that the data in the form is sent to the system
-def test_form_html():
-	question="Where is Brian?"
+#def test_form_html():
+	#question="Where is Brian?"
 	#send the question to the form
 	# Parcourir DOM en python ????? -> minidom ??
 	#form_return = getElementById('form').
-	assert form_return == question
+#	assert form_return == question
+
+
+#Test the parser
+#def test_parser():
+#	str = "Je veux aller aux champs Elysées"
+#	assert views.parser() == "champs Elysées"
+
+
+#Test Google Maps texSearch API
+def test_gmaps_search(monkeypatch):
+	results = [{
+			'formatted_address': '1 rue de la paix, 75008 Paris, France',
+			'name': 'Le Petit Paris',
+			'place_id': 'ChIJB0gcnCBw5kcRHoIAPcTEApc' }]
+
+
+	def mockreturn(request):
+		return results
+
+	monkeypatch.setattr(requests,'get',mockreturn)
+	assert views.parser == results
+
+	
+	
+
 	
 
 	
