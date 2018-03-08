@@ -27,7 +27,8 @@ def mwiki_api(lst):
 	query_wiki = ' '.join(lst)
 	query_wiki = query_wiki.title()
 	eprint(query_wiki)
-	resp = requests.get('https://fr.wikipedia.org/w/api.php?action=query&titles='+query_wiki+'&redirects&prop=revisions&rvprop=content&format=json&formatversion=2')
+	#resp = requests.get('https://fr.wikipedia.org/w/api.php?action=query&titles='+query_wiki+'&redirects&prop=revisions&rvprop=content&format=json&formatversion=2')
+	resp = requests.get('https://fr.wikipedia.org/w/api.php?action=query&titles='+query_wiki+'&redirects&prop=extracts&rvprop=content&explaintext=&format=json&formatversion=2')
 	response = resp.text
 	return json.loads(response)	
 	
@@ -50,8 +51,12 @@ def parser():
 	#eprint(stop)
 	
 	list_q = q.split()
-	clean_q = list_q
+	clean_q = q.split()
+	eprint("liste initiale")
+	eprint(list_q)
 	for word in list_q:
+		eprint("scan de "+word)
+		eprint(list_q)
 		for s in stop:
 			if (word == s):
 				eprint(word)
@@ -94,12 +99,22 @@ def parser():
 	#Mediawiki API
 	resp_wiki = mwiki_api(clean_q)
 	eprint(resp_wiki)
-	content_wiki = resp_wiki["query"]["pages"][0]["revisions"][0]["content"]
+	#content_wiki = resp_wiki["query"]["pages"][0]["revisions"][0]["content"]
 	
-	response_js = response_js+" Plus d'infos: "+content_wiki
+	content_wiki = resp_wiki["query"]["pages"][0]["extract"]
+	short_wiki =content_wiki[:1500]
+	list_wiki = short_wiki.split('.')
+	final_wiki = list_wiki[0]+"."
+	
+	title_wiki = resp_wiki["query"]["pages"][0]["title"]
+	link_wiki = "https://fr.wikipedia.org/wiki/"+title_wiki
 	
 	
-	return jsonify(result=response_js,lnk=lnk,wiki=content_wiki)
+	#Final concatenated response
+	response_js = response_js+" Je peux t'en dire des choses dessus ! "+final_wiki
+	
+	
+	return jsonify(result=response_js,lnk=lnk,wiki=link_wiki)
 
 
 if __name__ == "__main__":

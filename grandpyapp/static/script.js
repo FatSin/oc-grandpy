@@ -21,6 +21,10 @@ form.addEventListener("submit",function(e) {
 										console.log(data.lnk);
 										$('#gmaps').attr("src",data.lnk);
 										$('#gmaps').show();
+										$('#link_wiki').attr("href",data.wiki);
+										$('#link_wiki').show();
+										console.log("lien wiki"+data.wiki);
+										
 										
 									 }
 	)
