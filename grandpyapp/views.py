@@ -18,9 +18,19 @@ def gmaps_api(txt):
 	return json.loads(response)
 
 
+#Call Mediawiki search API
+def mwiki_api(lst):
+#	for l in lst:
+#		l=l.capitalize()
 
-
-
+	eprint(lst)
+	query_wiki = ' '.join(lst)
+	query_wiki = query_wiki.title()
+	eprint(query_wiki)
+	resp = requests.get('https://fr.wikipedia.org/w/api.php?action=query&titles='+query_wiki+'&redirects&prop=revisions&rvprop=content&format=json&formatversion=2')
+	response = resp.text
+	return json.loads(response)	
+	
 
 #Views
 
@@ -53,6 +63,7 @@ def parser():
 	
 	query = '+'.join(clean_q)
 	
+	
 	#resp = requests.get('https://maps.googleapis.com/maps/api/place/textsearch/json?query='+query+'&key=AIzaSyDkJ9UKbi0JzFYtCZr2dKZhLvWM3iOTLyM')
 	#response = resp.text
 
@@ -78,10 +89,17 @@ def parser():
 	
 	#Google Maps Embedded API
 	lnk = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDkJ9UKbi0JzFYtCZr2dKZhLvWM3iOTLyM&q=place_id:"+id
-	
 	eprint(lnk)
 	
-	return jsonify(result=response_js,lnk=lnk)
+	#Mediawiki API
+	resp_wiki = mwiki_api(clean_q)
+	eprint(resp_wiki)
+	content_wiki = resp_wiki["query"]["pages"][0]["revisions"][0]["content"]
+	
+	response_js = response_js+" Plus d'infos: "+content_wiki
+	
+	
+	return jsonify(result=response_js,lnk=lnk,wiki=content_wiki)
 
 
 if __name__ == "__main__":

@@ -50,17 +50,20 @@ def test_httpcode():
 
 #Test Google Maps texSearch API
 def test_gmaps_search(monkeypatch):
+
+	txt = "Je cherche la Cité des sciences"
 	results = [{
-			'formatted_address': '1 rue de la paix, 75008 Paris, France',
-			'name': 'Le Petit Paris',
+			'formatted_address': '30 Avenue Corentin Cariou, 75019 Paris, France',
+			'name': 'City of Science and Industry',
 			'place_id': 'ChIJB0gcnCBw5kcRHoIAPcTEApc' }]
 
+	
 
 	def mockreturn(request):
 		return results
 
 	monkeypatch.setattr(requests,'get',mockreturn)
-	assert views.parser == results
+	assert views.gmaps_api(txt) == results
 
 	
 	
