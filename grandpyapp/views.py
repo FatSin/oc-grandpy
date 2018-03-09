@@ -31,6 +31,10 @@ def mwiki_api(lst):
 	resp = requests.get('https://fr.wikipedia.org/w/api.php?action=query&titles='+query_wiki+'&redirects&prop=extracts&rvprop=content&explaintext=&format=json&formatversion=2')
 	response = resp.text
 	return json.loads(response)	
+
+
+
+
 	
 
 #Views
@@ -88,7 +92,8 @@ def parser():
 	#address = response[0][1]
 	#id = responset[0][3]
 	#name = response[0][4]
-	response_js = name+" se trouve au "+address+". Son ID est "+id
+	response_js = "Eh bien mon poussin !"+name+" se trouve au "+address
+	
 	#eprint(name+" se trouve au "+address+". Son ID est "+id)
 	
 	
@@ -111,7 +116,7 @@ def parser():
 	
 	
 	#Final concatenated response
-	response_js = response_js+" Je peux t'en dire des choses dessus ! "+final_wiki
+	response_js = response_js+'\r\n Je peux t'+"en dire des choses dessus ! "+final_wiki
 	
 	
 	return jsonify(result=response_js,lnk=lnk,wiki=link_wiki)
