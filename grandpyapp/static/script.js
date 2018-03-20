@@ -13,27 +13,47 @@ form.addEventListener("submit",function(e) {
 	//Display Grandpy's "thinking faces" with timers
 	$('#grandpy').attr("src",'/static/images/gp_left.png');
 
+	var knownLocation = 0;
 	
 	$.getJSON('/_parse', {q}, function(data) {
 										//Display grandpybot's answer
 										$("#answer").text(data.result);
 										//$('#bubble').show();
-										$('#bubble').css('visibility', 'visible');
+										//$('#bubble').css('visibility', 'visible');
+										$('#bubble').removeClass('invisible');
 										console.log(data.result);
 										
-										//Displays Google Maps iframe
-										console.log(data.lnk);
-										$('#gmaps').attr("src",data.lnk);
-										//$('#gmaps').show();
-										('#gmaps').css('visibility', 'visible');
-										$('#link_wiki').attr("href",data.wiki);
-										$('#link_wiki').show();
-										console.log("lien wiki"+data.wiki);
+										if (typeof data.lnk !== 'undefined') {
+
+											//Displays Google Maps iframe
+											console.log(data.lnk);
+											$('#gmaps').attr("src",data.lnk);
+											//$('#gmaps').show();
+											//('#gmaps').css('visibility', 'visible');
+											$('#gmaps').removeClass('invisible');
+											knownLocation++;
+										}
 										
-										//Display Grandpy's "normal face"
-										$('#grandpy').attr("src",'/static/images/gp_answers.png');
+										if (typeof data.wiki !== 'undefined') {
+											$('#link_wiki').attr("href",data.wiki);
+											$('#link_wiki').show();
+											console.log("lien wiki"+data.wiki);
+											knownLocation++;
+										}
+										
+										
+										
 									 }
 	)
+	
+	//Display Grandpy's "normal face"
+	
+	if (knownLocation >=1){
+		$('#grandpy').attr("src",'/static/images/gp_answers.png');
+	}
+	else{
+		$('#grandpy').attr("src",'/static/images/gp_hard.png');
+	}
 	
 	
 	//$("#answer").text(question);

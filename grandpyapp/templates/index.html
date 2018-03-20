@@ -8,7 +8,7 @@
 	<style>
 		header, #gpframe, footer
 		{
-			display:flex;
+		//	display:flex;
 		}
 		
 		#content
@@ -21,23 +21,28 @@
 			justify-content:space-around;
 		}*/
 		
-		#header
+		header
 		{
-			margin-bottom:10px;
+			margin-top:10px;
 		}
-		#cphrase
+		
+		.cphrase
 		{
-			margin-right:20px;
+		//	margin-right:20px;
+		//	margin-top:20px;
+			font-size:25px;
+			font-style: italic;
 		}
 		#form
 		{
 			padding-top:20px;
-			padding-left:200px;
+			//padding-left:200px;
 		}
 		
 		#gpframe
 		{
 			margin-top:30px;
+			margin-bottom:30px
 		}
 		
 		#bubble
@@ -47,17 +52,41 @@
 			height=300px;
 			text-align:center;
 			//background-image:url({{url_for('static', filename='images/bubble.png')}});
-			background-size:contain;
-			background-repeat:no-repeat;
-			padding-right:600px;
+			//background-size:contain;
+			//background-repeat:no-repeat;
+		//	padding-right:600px;
 			padding-top:20px;
-			padding-left:20px;
+		//	padding-left:20px;
 			
+		}
+		
+		#bubble_img
+		{
+			position:relative;
+		}
+		
+		#answer
+		{
+			position:absolute;
+			text-align:center;
+			margin-top: -160px;
+			padding-left:20px;
+			padding-right:100px;
+		}
+		#link_wiki
+		{
+			//text-align:center;
+			margin-top:-30px;
+			//padding-bottom:30px;
+			//padding-left:20px;
+			position:absolute;
+			padding-right:550px;
 		}
 		
 		#grandpy
 		{
-			margin-right:20px
+			margin-top:20px;
+			margin-right:20px;
 			
 		}
 		
@@ -66,42 +95,92 @@
 			//margin-bottom:100px;
 		}
 		
+		.hidden-md
+		{
+			visibility:"hidden" !important;
+			//hidden:"hidden";
+		}
+		
+		footer
+		{
+			//position:fixed;
+			height:20px;
+		}
 		
 		
 	</style>
 </head>
 <body>
 	<header>
-		<div id=logo>
-			<img src="{{url_for('static', filename='images/logo.png')}}" width="70%"/>
+		<div class="container">
+			<div class="row">
+				<!--<div class="cphrase col-sm-offset-3 col-sm-2">Laisse </div>
+				<div id=logo class="hidden-xs col-sm-3">
+					<img src="{{url_for('static', filename='images/logo.png')}}" width="80%"/>
+				</div>
+				<div class="cphrase col-sm-2">te guider!</div>!-->
+				
+				<div class="cphrase col-sm-offset-4 col-sm-10">
+					<span class="cphrase">Laisse</span>
+					<img src="{{url_for('static', filename='images/logo.png')}}" width="30%"/>	
+					<span class="cphrase">te guider!</span	>
+				</div>
+			</div>
 		</div>
-		<div id =cphrase>Laisse GrandpyBot te guider!</div>
-		<hr/>
 	</header>
 	<div id=content>
-		<form id=form>
-				<input id="question" type="text" placeholder="Dis-moi où tu veux aller." size="100" maxlength="100" height="80px"/>
-				<input id="send" type="submit" value="Grandpy, tu sais ?"/>
-		</form>
-		<div id=gpframe>
-			<!--<img id="bubble" src="{{url_for('static', filename='images/bubble.png')}}" width="30%" height="60%" hidden/>!-->
-			<div  visibility="hidden" id=bubble><p visibility="hidden" id=answer></p><a hidden="hidden" id=link_wiki >En savoir plus</a></div>
-			<img id="grandpy" src="{{url_for('static', filename='images/gp_normal.png')}}" width="20%"/>
+		<div class="container">
+			<div class="row">
+					<form id=form>
+						<div class="col-sm-11 col-md-offset-3 col-md-8">
+							<input id="question" type="text" placeholder="?" size="80" maxlength="80" height="80px"/>
+							<input id="send" type="submit" value="Grandpy, tu sais ?"/>
+						</div>
+						<div class="col-sm-1  col-md-2">
+						
+						</div>
+					</form>
+				
+			</div>
+			<div class="row" id=gpframe>
+					<!--<img id="bubble" src="{{url_for('static', filename='images/bubble.png')}}" width="30%" height="60%" hidden/>!-->	
+				<div  id=bubble class="col-sm-8 col-md-offset-2 col-md-5">
+					<img id=bubble_img src="{{url_for('static', filename='images/bubble.png')}}" width="100%">
+					<p id=answer>Dis-moi où tu veux aller.</p>
+					<p><a hidden="hidden" id=link_wiki >En savoir plus</a></p>
+				</div>
+				<div class="col-sm-4 col-md-5"><img id="grandpy" src="{{url_for('static', filename='images/gp_normal.png')}}" width="40%"/></div>
+			</div>
+				<!--<hr/>!-->
+			<div class="row">
+				<div class="col-sm-12 col-md-offset-4 col-md-4 ">
+					<iframe
+					  class="invisible"
+					  id=gmaps
+					  width="450"
+					  height="250"
+					  frameborder="0" style="border:0"
+					  allowfullscreen>
+					</iframe>
+				</div>
+			</div>
 		</div>
-		<!--<hr/>!-->
-		<iframe
-		  visibility="hidden"
-		  id="gmaps"
-		  width="450"
-		  height="250"
-		  frameborder="0" style="border:0"
-		  allowfullscreen>
-		</iframe>
 		<hr/>
 	</div>
 	<footer>
-		<p>Fatou S.</p>
-		<a href="https://github.com/FatSin/oc-grandpy">My github link<a/>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-4">
+					<p>Fatou S.</p>
+				</div>
+				<div class="col-xs-4">
+					<a href="https://github.com/FatSin/oc-grandpy">My Github link<a/>
+				</div>
+				<div class="col-xs-4">
+					<a href="https://oc-grandpy.herokuapp.com/">My Heroku link<a/>
+				</div>
+			</div>
+		</div>
 	</footer>
 	
 		
