@@ -11,11 +11,15 @@ form.addEventListener("submit",function(e) {
 	console.log("parsing starts...pour"+q);
 	
 	//Display Grandpy's "thinking faces" with timers
-	$('#grandpy').attr("src",'/static/images/gp_left.png');
+	//$('#grandpy').attr("src",'/static/images/gp_left.png');
+	$('#grandpy').addClass('gprotate');
 
 	var knownLocation = 0;
 	
+	
+	
 	$.getJSON('/_parse', {q}, function(data) {
+										//$('#grandpy').addClass('gprotate');
 										//Display grandpybot's answer
 										$("#answer").text(data.result);
 										//$('#bubble').show();
@@ -42,23 +46,29 @@ form.addEventListener("submit",function(e) {
 										}
 										
 										
-										
+										$('#grandpy').removeClass('gprotate');
 									 }
+									 
+									 
+									 
 	)
 	
 	//Display Grandpy's "normal face"
 	
+	
+	/*
 	if (knownLocation >=1){
 		$('#grandpy').attr("src",'/static/images/gp_answers.png');
 	}
 	else{
 		$('#grandpy').attr("src",'/static/images/gp_hard.png');
 	}
-	
+	*/
 	
 	//$("#answer").text(question);
 	console.log("...parsing done.");
 	e.preventDefault();
+	
 	
 }
 )

@@ -72,6 +72,7 @@
 			margin-top: -160px;
 			padding-left:20px;
 			padding-right:100px;
+			
 		}
 		#link_wiki
 		{
@@ -89,6 +90,13 @@
 			margin-right:20px;
 			
 		}
+		
+		.gprotate
+		{
+			animation:spin 2s linear infinite;
+		}
+		
+		@keyframes spin	{ 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 		
 		#gmaps
 		{
@@ -149,7 +157,7 @@
 					<p id=answer>Dis-moi où tu veux aller.</p>
 					<p><a hidden="hidden" id=link_wiki >En savoir plus</a></p>
 				</div>
-				<div class="col-sm-4 col-md-5"><img id="grandpy" src="{{url_for('static', filename='images/gp_normal.png')}}" width="40%"/></div>
+				<div class="col-sm-4 col-md-5"><img id=grandpy src="{{url_for('static', filename='images/gp_normal.png')}}" width="40%"/></div>
 			</div>
 				<!--<hr/>!-->
 			<div class="row">
