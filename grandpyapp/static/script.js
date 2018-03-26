@@ -18,7 +18,7 @@ form.addEventListener("submit",function(e) {
 	
 	
 	
-	$.getJSON('/_parse', {q}, function(data) {
+	$.getJSON('/_callPython', {q}, function(data) {
 										//$('#grandpy').addClass('gprotate');
 										//Display grandpybot's answer
 										$("#answer").text(data.result);
@@ -26,6 +26,7 @@ form.addEventListener("submit",function(e) {
 										//$('#bubble').css('visibility', 'visible');
 										$('#bubble').removeClass('invisible');
 										console.log(data.result);
+										
 										
 										if (typeof data.lnk !== 'undefined') {
 
@@ -37,6 +38,7 @@ form.addEventListener("submit",function(e) {
 											$('#gmaps').removeClass('invisible');
 											knownLocation++;
 										}
+										
 										
 										if (typeof data.wiki !== 'undefined') {
 											$('#link_wiki').attr("href",data.wiki);
