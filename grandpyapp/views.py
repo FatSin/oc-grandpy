@@ -5,10 +5,10 @@ from flask import Flask, render_template, jsonify, request
 import requests
 import json
 
-pa = sys.path[0]
+#pa = sys.path[0]
 sys.path.append(sys.path[0] + "\grandpyapp\static")
 
-import backscript as back
+import grandpyapp.static.backscript as back
 	
 app = Flask(__name__)
 
