@@ -12,13 +12,14 @@ form.addEventListener("submit",function(e) {
 	
 	//Display Grandpy's "thinking faces" with timers
 	//$('#grandpy').attr("src",'/static/images/gp_left.png');
+	
 	$('#grandpy').addClass('gprotate');
-
 	var knownLocation = 0;
 	
 	
 	
 	$.getJSON('/_callPython', {q}, function(data) {
+										
 										//$('#grandpy').addClass('gprotate');
 										//Display grandpybot's answer
 										$("#answer").text(data.result);
@@ -48,12 +49,41 @@ form.addEventListener("submit",function(e) {
 										}
 										
 										
-										$('#grandpy').removeClass('gprotate');
+										
+										$('#grandpy').removeClass('gprotate');	
+										$('#question').addClass('invisible');								
+										$('#send').addClass('invisible');
+										$('#retry').removeClass('invisible');
+										
+										/*var retry = document.getElementById('retry');
+										retry.addEventListener("click",function(e) {
+
+
+														$('#retry').addClass('invisible');
+														$('#question').removeClass('invisible');
+														$('#send').removeClass('invisible');
+										
+										
+										
+										});
+										*/
 									 }
 									 
 									 
 									 
 	)
+
+retry.addEventListener("click",function(e) {
+
+			$('#question').val('');
+			$('#retry').addClass('invisible');
+			$('#question').removeClass('invisible');
+			$('#send').removeClass('invisible');
+			e.preventDefault();
+
+
+
+});
 	
 	//Display Grandpy's "normal face"
 	

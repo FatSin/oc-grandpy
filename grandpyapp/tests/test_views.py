@@ -12,7 +12,9 @@ print(sys.path)
 from io import BytesIO
 import json
 import pytest
-from flask import Flask
+from flask import Flask, request
+from flask_testing import TestCase
+import requests
 
 from grandpyapp import app
 
@@ -41,20 +43,37 @@ INDEX_FILE="index.html"
 
 #Check the routes
 
-@pytest.fixture(scope="module")
+
+class Testuserhttp(TestCase):
+	def create_app(self):
+		app = Flask(__name__)
+		app.config['TESTING'] = True
+		app.config['SERVER_NAME'] = HOST+':'+PORT
+		return app
+
+	
+	def test_httpindex(self):
+		link='http://'+HOST+':'+PORT+"/"
+		#print(link)
+		#code = urllib.request.urlopen(link).getcode()
+		r = requests.get(link)
+		
+		assert r.status_code == 200
+		
+'''
+@pytest.fixture
 def create_app():
 	app = Flask(__name__)
 	app.config['TESTING'] = True
 	return app
 
-
-@pytest.mark.routes
 def test_httpindex():
 	link='http://'+HOST+':'+PORT+"/"
 	#print(link)
 	code = urllib.request.urlopen(link).getcode()
 	
-	assert code == 200	
+	assert code == 200
+
 
 
 @pytest.mark.routes
@@ -63,7 +82,11 @@ def test_httpjs():
 	code = urllib.request.urlopen(link).getcode()
 	
 	assert code == 200
-	
+
+	'''
+
+
+
 
 #Test the parser
 def test_parser():

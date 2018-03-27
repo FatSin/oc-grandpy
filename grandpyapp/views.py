@@ -167,15 +167,15 @@ def call_python():
 		gmaps_ok = 0
 	
 	'''
-	In case API call number expired
+	#In case API call number expired
 	
 	gmaps_ok = 1
 	name = "Tour Eiffel"
 	address = "DTC"
 	id = "ChIJlWBfzuxv5kcRayN3ZzmZulY"
 	response_js = name+" se trouve au "+address
-	'''
 	
+	'''
 	#address = response_gmaps[0][1]
 	#id = response_gmaps[0][3]
 	#name = response_gmaps[0][4]
