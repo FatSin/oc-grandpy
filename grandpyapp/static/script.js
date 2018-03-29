@@ -42,7 +42,7 @@ form.addEventListener("submit",function(e) {
 										$('#bubble').removeClass('invisible');
 										console.log(data.result);
 										
-										/*
+										
 										if (typeof data.lnk !== 'undefined') {
 
 											//Displays Google Maps iframe
@@ -53,7 +53,7 @@ form.addEventListener("submit",function(e) {
 											$('#gmaps').removeClass('invisible');
 											knownLocation++;
 										}
-										*/
+										
 										
 										if (typeof data.wiki !== 'undefined') {
 											$('#link_wiki').attr("href",data.wiki);

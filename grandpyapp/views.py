@@ -153,7 +153,7 @@ def call_python():
 	#eprint("results: ")
 	#eprint(response_gmaps["results"])
 	
-	'''
+	
 	
 	response_gmaps = back.gmaps_api(query)
 	eprint("Retour de l'API gmaps")
@@ -178,7 +178,7 @@ def call_python():
 	id = "ChIJlWBfzuxv5kcRayN3ZzmZulY"
 	response_js = name+" se trouve au "+address
 	
-	
+	'''
 	#address = response_gmaps[0][1]
 	#id = response_gmaps[0][3]
 	#name = response_gmaps[0][4]
