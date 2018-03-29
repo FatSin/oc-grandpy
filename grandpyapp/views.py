@@ -127,6 +127,8 @@ def call_python():
 	'''
 	parsed = back.parser(q)
 	
+	
+	
 	#Google Maps Textsearch API
 
 	
@@ -151,6 +153,7 @@ def call_python():
 	#eprint("results: ")
 	#eprint(response_gmaps["results"])
 	
+	'''
 	
 	response_gmaps = back.gmaps_api(query)
 	eprint("Retour de l'API gmaps")
@@ -175,17 +178,24 @@ def call_python():
 	id = "ChIJlWBfzuxv5kcRayN3ZzmZulY"
 	response_js = name+" se trouve au "+address
 	
-	'''
+	
 	#address = response_gmaps[0][1]
 	#id = response_gmaps[0][3]
 	#name = response_gmaps[0][4]
 	
 	
 	
-	#Mediawiki API call	
-	resp_wiki = back.mwiki_api(parsed)	
+	#Mediawiki API call
+
+	try:
+		resp_wiki = back.mwiki_api(parsed)
+	except KeyError as k:
+		eprint("Erreur de saisie")
+		response_js = "Comment ?? Je n'ai pas entendu ta question. Tu sais, à mon âge..."
+		return jsonify(result=response_js)
 	
 	content_wiki = resp_wiki["query"]["pages"][0]
+	
 	
 	intro = ["Eh bien, mon poussin !","Ah, ça me revient !","Bien sûr, j'y suis allé maintes fois !"]
 	

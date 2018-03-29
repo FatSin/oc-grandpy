@@ -69,25 +69,27 @@
 		{
 			position:absolute;
 			text-align:center;
-			margin-top: -160px;
-			padding-left:20px;
+			#margin-top: -160px;
+			margin-top: -120px;
+			#padding-left:20px;
+			padding-left:120px;
 			padding-right:100px;
 			
 		}
 		#link_wiki
 		{
 			text-align:center;
-			margin-top:-30px;
+			//margin-top:-30px;
 			//padding-bottom:30px;
 			//padding-left:20px;
 			position:absolute;
-			margin-left:-75px;
+			//margin-left:-75px;
 		}
 		
 		#grandpy
 		{
 			margin-top:20px;
-			margin-right:20px;
+			//margin-right:20px;
 			
 		}
 		
@@ -112,6 +114,7 @@
 		footer
 		{
 			//position:fixed;
+			margin-top:7px;
 			height:20px;
 		}
 		
@@ -120,7 +123,7 @@
 </head>
 <body>
 	<header>
-		<div class="container">
+		<div class="hidden-xs container-fluid">
 			<div class="row">
 				<!--<div class="cphrase col-sm-offset-3 col-sm-2">Laisse </div>
 				<div id=logo class="hidden-xs col-sm-3">
@@ -137,32 +140,28 @@
 		</div>
 	</header>
 	<div id=content>
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
 					<form id=form>
-						<div class="col-sm-11 col-md-offset-3 col-md-8">
+						<div class="col-sm-8 col-md-offset-3 col-md-8">
 							<input id="question" type="text" placeholder="?" size="80" maxlength="80" height="80px"/>
 							<input id="send" type="submit" value="Grandpy, tu sais ?"/>
-							<input class="invisible" id="retry" type="submit" value="Nouvelle recherche"/>
-						</div>
-						<div class="col-sm-1  col-md-2">
-						
 						</div>
 					</form>
+			</div>
 			<div class="row">			
-						<div class="col-sm-11 col-md-offset-6 col-md-4">
+					<div class="col-xs-offset-2 col-xs-11 col-sm-offset-5 col-sm-4">
 							<button class="invisible" id="retry">Nouvelle recherche</button/>
-						</div>
-				
+					</div>				
 			</div>
 			<div class="row" id=gpframe>
 					<!--<img id="bubble" src="{{url_for('static', filename='images/bubble.png')}}" width="30%" height="60%" hidden/>!-->	
-				<div  id=bubble class="col-sm-8 col-md-offset-2 col-md-5">
+				<div  id=bubble class="col-xs-8 col-sm-7 col-lg-offset-2 col-lg-5">
 					<img id=bubble_img src="{{url_for('static', filename='images/bubble.png')}}" width="100%">
 					<p id=answer>Dis-moi où tu veux aller.</p>
-					<p><a hidden="hidden" id=link_wiki >En savoir plus</a></p>
+					<p><a hidden="hidden" id=link_wiki target="_blank">En savoir plus</a></p>
 				</div>
-				<div class="col-sm-4 col-md-5"><img id=grandpy src="{{url_for('static', filename='images/gp_normal.png')}}" width="40%"/></div>
+				<div class="col-xs-8 col-sm-5 col-lg-5"><img id=grandpy src="{{url_for('static', filename='images/gp_normal.png')}}" width="40%"/></div>
 			</div>
 				<!--<hr/>!-->
 			<div class="row">
@@ -178,10 +177,9 @@
 				</div>
 			</div>
 		</div>
-		<hr/>
 	</div>
 	<footer>
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-4">
 					<p>Fatou S.</p>
