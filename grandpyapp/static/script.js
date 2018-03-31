@@ -1,11 +1,18 @@
 //Interface with Python file
 var form = document.getElementById('form');
 
+var mq = window.matchMedia("(min-width: 500px)")
+
+if(!mq.matches){
+	$('#bubble_img').attr("src",'/static/images/bubble_down.png');
+}
 
 
 form.addEventListener("submit",function(e) {
 
 	var q = form.elements.question.value;
+	
+	
 
 
 	console.log("parsing starts...pour"+q);
@@ -18,23 +25,52 @@ form.addEventListener("submit",function(e) {
 	
 	
 	
+	
 	$.getJSON('/_callPython', {q}, function(data) {
 										
 										//$('#grandpy').addClass('gprotate');
 										//Display grandpybot's answer
-										 if (data.result.length >= 320){
-											 $('#bubble_img').css("height","210");
-											 $("#answer").css("margin-top","-190px"); 
-											$("#answer").css("padding-left","20px"); 
+										
+										if(mq.matches){
+											 if (data.result.length >= 320){
+												 $('#bubble_img').css("height","210");
+												 $("#answer").css("margin-top","-190px"); 
+												$("#answer").css("padding-left","20px"); 
+												
+												console.log('gros texte!');
+											 }
+											 else{
+												//$('#bubble_img').attr("height","100%");
+												$("#answer").css("margin-top","-160px");
+												$("#answer").css("padding-left","20px");
+												console.log('normal texte!');
+											 }
+										
+											$('#link_wiki').css("margin-top","-30px");
+											$('#link_wiki').css("margin-left","-70px");
+										}
+										
+										/*
+										else{
 											
-											console.log('gros texte!');
-										 }
-										 else{
-											//$('#bubble_img').attr("height","100%");
-											$("#answer").css("margin-top","-160px");
-											$("#answer").css("padding-left","20px");
-											console.log('normal texte!');
-										 }
+											
+											if (data.result.length >= 320){
+												 $('#bubble_img').css("height","210");
+												 $("#answer").css("margin-top","-190px"); 
+												$("#answer").css("padding-left","20px"); 
+												
+												console.log('gros texte!');
+											 }
+											 else{
+												//$('#bubble_img').attr("height","100%");
+												$("#answer").css("margin-top","-160px");
+												$("#answer").css("padding-left","20px");
+												console.log('normal texte!');
+											 }
+										
+										
+										}
+										*/
 										
 										$("#answer").text(data.result);
 										//$('#bubble').show();
@@ -57,8 +93,6 @@ form.addEventListener("submit",function(e) {
 										
 										if (typeof data.wiki !== 'undefined') {
 											$('#link_wiki').attr("href",data.wiki);
-											$('#link_wiki').css("margin-top","-30px");
-											$('#link_wiki').css("margin-left","-70px");
 											$('#link_wiki').css("display","inline");
 											$('#link_wiki').show();
 											console.log("lien wiki"+data.wiki);
