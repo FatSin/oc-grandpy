@@ -9,20 +9,10 @@
 	
 	<title>GrandPy Bot</title>
 	<style>
-		header, #gpframe, footer
-		{
-		//	display:flex;
-		}
-		
 		#content
 		{
 		background-color:#66CDAA
 		}
-		
-		/*header, #gpframe, footer
-		{
-			justify-content:space-around;
-		}*/
 		
 		header
 		{
@@ -31,8 +21,6 @@
 		
 		.cphrase
 		{
-		//	margin-right:20px;
-		//	margin-top:20px;
 			font-size:25px;
 			font-style: italic;
 		}
@@ -54,18 +42,13 @@
 			width=300px;
 			height=300px;
 			text-align:center;
-			//background-image:url({{url_for('static', filename='images/bubble.png')}});
-			//background-size:contain;
-			//background-repeat:no-repeat;
-		//	padding-right:600px;
-			padding-top:20px;
-		//	padding-left:20px;
-			
+			padding-top:20px;			
 		}
 		
 		#bubble_img
 		{
 			position:relative;
+			width:100%;
 		}
 		
 		#answer
@@ -133,7 +116,7 @@
 			{
 				visibility:"hidden";
 				width=300px;
-				height=350px;
+				height=650px;
 			}
 			#answer
 			{
@@ -159,12 +142,10 @@
 			{
 				visibility:"hidden";
 				width=300px;
-				height=500px;
+				height=650px;
 				padding-top:5px;
 				padding-left:-20px;
-				text-overflow: ellipsis;
-				//border:1px;
-				//background-color:white;	
+				text-overflow: ellipsis;	
 			}
 			#link_wiki
 			{
@@ -218,7 +199,7 @@
 			<div class="row" id=gpframe>
 					<!--<img id="bubble" src="{{url_for('static', filename='images/bubble.png')}}" width="30%" height="60%" hidden/>!-->	
 				<div  id=bubble class="col-xs-12 col-sm-7 col-lg-offset-2 col-lg-5">
-					<img id=bubble_img src="{{url_for('static', filename='images/bubble.png')}}" width="100%"/>
+					<img id=bubble_img src="{{url_for('static', filename='images/bubble.png')}}"/>
 					<p id=answer>Dis-moi où tu veux aller.</p>
 					<p><a hidden="hidden" id=link_wiki target="_blank">En savoir plus</a></p>
 				</div>

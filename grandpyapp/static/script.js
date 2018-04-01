@@ -1,31 +1,24 @@
-//Interface with Python file
 var form = document.getElementById('form');
 
 var mq = window.matchMedia("(min-width: 500px)")
 
 if(!mq.matches){
 	$('#bubble_img').attr("src",'/static/images/bubble_down.png');
+	$('#gmaps').attr("width",'300');
+	$('#gmaps').attr("height",'180');
 }
 
 
 form.addEventListener("submit",function(e) {
 
 	var q = form.elements.question.value;
-	
-	
-
 
 	console.log("parsing starts...pour"+q);
-	
-	//Display Grandpy's "thinking faces" with timers
-	//$('#grandpy').attr("src",'/static/images/gp_left.png');
 	
 	$('#grandpy').addClass('gprotate');
 	var knownLocation = 0;
 	
-	
-	
-	
+	//Interface with Python
 	$.getJSON('/_callPython', {q}, function(data) {
 										
 										//$('#grandpy').addClass('gprotate');
@@ -49,6 +42,13 @@ form.addEventListener("submit",function(e) {
 											$('#link_wiki').css("margin-top","-30px");
 											$('#link_wiki').css("margin-left","-70px");
 										}
+										
+										else{
+											if (data.result.length >= 320){
+												$("#answer").css("font-size","11px"); 
+											 }
+										}
+							
 										
 										/*
 										else{
@@ -113,18 +113,6 @@ form.addEventListener("submit",function(e) {
 											$('#grandpy').attr("src",'/static/images/gp_hard.png');
 										}
 										
-										/*var retry = document.getElementById('retry');
-										retry.addEventListener("click",function(e) {
-
-
-														$('#retry').addClass('invisible');
-														$('#question').removeClass('invisible');
-														$('#send').removeClass('invisible');
-										
-										
-										
-										});
-										*/
 									 }
 									 
 									 
@@ -135,32 +123,21 @@ retry.addEventListener("click",function(e) {
 
 			$('#grandpy').attr("src",'/static/images/gp_normal.png');
 			$('#question').val('');
-			$('#answer').text('Dis-moi où tu veux aller.');
-			$("#answer").css("margin-top","-120px");
-			$("#answer").css("padding-left","120px");
-			$("#bubble_img").css("height","100%");
+			$('#answer').text('Dis-moi où tu veux aller.');		
 			$('#retry').addClass('invisible');
 			$('#question').removeClass('invisible');
 			$('#send').removeClass('invisible');
 			$('#link_wiki').hide();
 			$('#gmaps').addClass('invisible');
 			e.preventDefault();
-
+			
+			if(mq.matches){
+				$("#answer").css("margin-top","-120px");
+				$("#answer").css("padding-left","120px");
+				$("#bubble_img").css("height","100%");
+			}
 });
 	
-	//Display Grandpy's "normal face"
-	
-	
-	/*
-	if (knownLocation >=1){
-		$('#grandpy').attr("src",'/static/images/gp_answers.png');
-	}
-	else{
-		$('#grandpy').attr("src",'/static/images/gp_hard.png');
-	}
-	*/
-	
-	//$("#answer").text(question);
 	console.log("...parsing done.");
 	e.preventDefault();
 	
