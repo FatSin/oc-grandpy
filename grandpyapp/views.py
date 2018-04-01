@@ -92,7 +92,7 @@ def call_python():
         #Final concatenated response
         randindex = random.randint(0, len(intro)-1)
 
-        response_js = intro[randindex]+" "+response_js+'\r\n Je peux t'+"'en dire des choses dessus ! "+'\r\n'+final_wiki
+        response_js = intro[randindex]+" "+response_js+'\r\n . Je peux t'+"'en dire des choses dessus ! "+'\r\n'+final_wiki
 
         #Google Maps Embedded API
         lnk = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDkJ9UKbi0JzFYtCZr2dKZhLvWM3iOTLyM&q=place_id:"+id

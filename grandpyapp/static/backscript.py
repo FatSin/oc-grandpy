@@ -103,12 +103,12 @@ def parser(query):
         "y", "z", "zut", "à", "â", "ça", "ès", "étaient", "étais", "était", "étant",
         "été", "être", "ô"]
     stop += [
-        "aller", "veux", "voudrais", "saurais", "connaitrais", "trouve", "savoir",
-        "faut", "cherche", "connais", "connaissais", "connaître", "adresse",
+        "aller", "veux", "voudrais", "saurais", "connaitrais", "trouve", "trouvent", "savoir",
+        "faut", "cherche", "connais", "connaissais", "connaître", "adresse", "demande",
         "l'adresse", "grandpy", "est-ce", "!", "?", ".", "salut", "bonjour", ", ", "dis"]
 
-    list_q = re.split(',| |!|\'|\?|-', query)
-    clean_q = re.split(',| |!|\'|\?|-', query)
+    list_q = re.split(',| |!|\'|\?|-|\.', query)
+    clean_q = re.split(',| |!|\'|\?|-|\.', query)
 
     eprint("liste initiale")
     eprint(clean_q)
