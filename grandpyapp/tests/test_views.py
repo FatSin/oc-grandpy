@@ -9,7 +9,7 @@ import urllib.request
 import requests
 import pytest
 from flask import Flask
-from flask_testing import LiveServerTestCase
+from flask_testing import TestCase
 
 
 sys.path.append(sys.path[0] + "/..")
@@ -20,37 +20,28 @@ import backscript as back
 
 
 HOST = "127.0.0.1"
-PORT = "8943"
+PORT = "5000"
 INDEX_FILE = "index.html"
 
 
-class Testuserhttp(LiveServerTestCase):
+class Testuserhttp(TestCase):
     """ Test the routes  """
     def create_app(self):
-        '''For the  generation of a testing Flask app
+        """For the  generation of a testing Flask app"""
         app = Flask(__name__)
         app.config['TESTING'] = True
         app.config['SERVER_NAME'] = HOST+':'+PORT
-        return app
-        '''
-        app = Flask(__name__)
-        app.config['TESTING'] = True
-        # Default port is 5000
-        app.config['LIVESERVER_PORT'] = 8943
-        # Default timeout is 5 seconds
-        app.config['LIVESERVER_TIMEOUT'] = 10
         return app
 
     def test_httpindex(self):
         """ Call the index and check the status code """
         link = 'http://'+HOST+':'+PORT+"/"
-        #print(link)
-        #code = urllib.request.urlopen(link).getcode()
         req = requests.get(link)
 
         assert req.status_code == 200
 
-    def test_httpjs():
+
+    def test_httpjs(self):
         """ Call the backend as javascript would do """
         link = 'http://'+HOST+':'+PORT+"/_callPython?q=je+cherche+la+tour+eiffel"
         code = urllib.request.urlopen(link).getcode()
