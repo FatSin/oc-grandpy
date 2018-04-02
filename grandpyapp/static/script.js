@@ -50,28 +50,6 @@ form.addEventListener("submit",function(e) {
 										}
 							
 										
-										/*
-										else{
-											
-											
-											if (data.result.length >= 320){
-												 $('#bubble_img').css("height","210");
-												 $("#answer").css("margin-top","-190px"); 
-												$("#answer").css("padding-left","20px"); 
-												
-												console.log('gros texte!');
-											 }
-											 else{
-												//$('#bubble_img').attr("height","100%");
-												$("#answer").css("margin-top","-160px");
-												$("#answer").css("padding-left","20px");
-												console.log('normal texte!');
-											 }
-										
-										
-										}
-										*/
-										
 										$("#answer").text(data.result);
 										//$('#bubble').show();
 										//$('#bubble').css('visibility', 'visible');
